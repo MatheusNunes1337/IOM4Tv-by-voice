@@ -1,4 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+
 import api from '../services/api'
 
 import { useHistory } from 'react-router-dom'
@@ -14,9 +16,17 @@ import { RequestContext } from '../contexts/requestContext'
 import '../assets/css/style.css'
 
 function Home() {
-  const { index, setMovement, setIndex } = useContext(Context)
+  const { index, setMovement, setIndex, startListen } = useContext(Context)
   const { funcao, makeRequest } = useContext(RequestContext)
   let history = useHistory()
+
+  const commands = [{
+        command: ['direita', 'esquerda', 'clica'],
+        callback: (comando) => setMovement(comando.command)
+    }]
+
+  const { transcript } = useSpeechRecognition({commands})
+
 
   async function goToLib(e) {
     const TVkeyCode = e.currentTarget.id
@@ -33,6 +43,7 @@ function Home() {
 
   useEffect(() => {
       setIndex(0)
+      startListen()
   }, []);
 
 

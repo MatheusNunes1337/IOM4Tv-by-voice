@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 import api from '../services/api'
 
@@ -15,9 +16,17 @@ import { RequestContext } from '../contexts/requestContext'
 import '../assets/css/style.css'
 
 function Biblioteca() {
-  const { index, setMovement, setIndex } = useContext(Context)
+  const { index, setMovement, setIndex, startListen } = useContext(Context)
   const { funcao, makeRequest } = useContext(RequestContext)
   let history = useHistory()
+
+  const commands = [{
+        command: ['direita', 'esquerda', 'clica'],
+        callback: (comando) => setMovement(comando.command)
+    }]
+
+  const { transcript } = useSpeechRecognition({commands})
+
 
   async function goBackHome(e) {
     const TVkeyCode = e.currentTarget.id
@@ -34,6 +43,7 @@ function Biblioteca() {
 
   useEffect(() => {
       setIndex(0)
+      startListen()
   }, []);
 
 

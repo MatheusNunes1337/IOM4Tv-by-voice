@@ -20,10 +20,20 @@ function Biblioteca() {
   const { funcao, makeRequest } = useContext(RequestContext)
   let history = useHistory()
 
-  const commands = [{
-        command: ['direita', 'esquerda', 'clica'],
-        callback: (comando) => setMovement(comando.command)
-    }]
+  const commands = [
+      {
+        command: ['direita', 'direito', 'direto'],
+        callback: () => setMovement(2)
+      },
+      {
+        command: 'esquerda',
+        callback: () => setMovement(1)
+      },
+      {
+        command: ['clicar', 'clica', 'clique'],
+        callback: () => setMovement(3)
+      }
+  ]
 
   const { transcript } = useSpeechRecognition({commands})
 

@@ -16,19 +16,19 @@ function ButtonProvider({ children }) {
 
   	function setMovement(movement) {
 
-	    if(movement == 'esquerda') {
+	    if(movement == 1) {
 	       if(index === 0) {
 	          setIndex(document.getElementsByClassName("interact_btn").length - 1)
 	       } else {
 	         setIndex(index - 1)
 	       }
-	    } else if(movement == 'direita') {
+	    } else if(movement == 2) {
 	        if(index === document.getElementsByClassName("interact_btn").length - 1) {
 	          setIndex(0)
 	       } else {
 	         setIndex(index + 1)
 	       }
-	    } else if (movement == 'clica') {
+	    } else if (movement == 3) {
 	        document.getElementsByClassName('interact_btn')[index].click()
 	        document.getElementsByClassName('interact_btn')[index].focus()
 	    }

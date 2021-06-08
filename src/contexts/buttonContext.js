@@ -14,7 +14,7 @@ function ButtonProvider({ children }) {
 		console.log('Tudo pronto para ouvir!')
 	}
 
-  	function setMovement(movement) {
+  	function handleMovement(movement) {
 
 	    if(movement == 1) {
 	       if(index === 0) {
@@ -35,7 +35,7 @@ function ButtonProvider({ children }) {
   	}
 
 	return (
-		<Context.Provider value={{ index, setMovement, setIndex, startListen}} >
+		<Context.Provider value={{ index, handleMovement, setIndex, startListen}} >
 			{children}
 		</Context.Provider>
 	)

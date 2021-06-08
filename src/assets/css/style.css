@@ -16,6 +16,7 @@ button{
 	border: none;
 	color: #ffffff;
 	border-radius: 100%;
+	cursor: pointer;
 }
 
 .container{
@@ -86,6 +87,7 @@ div.buttons_wrapper > button {
     border-radius: 200px / 130px;  
 }
 
+
 .rightButton{
 	transition: .3s all;
 	position: absolute;
@@ -95,8 +97,7 @@ div.buttons_wrapper > button {
 	width: 120px;
 	height: 120px;
 	background-color:#0c8e36;
-	font-size: 1.25em;
-	cursor: pointer;
+	font-size: 1.45em;
 	outline: none;
 	transition: .5s ease-in-out;
 }
@@ -110,26 +111,27 @@ div.buttons_wrapper > button {
 	width: 120px;
 	height: 120px;
 	background-color:#0c8e36;
-	font-size: 1.25em;
-	cursor: pointer;
+	font-size: 1.45em;
 	outline: none;
 	transition: .5s ease-in-out;
 }
 
-.leftButton p{
+.leftButton .buttonIcon{
 	position: relative;
-	font-weight: 700;
+	font-weight: 900;
 	right: 30px;
+	font-size: 22px;
 }
 
-.rightButton p{
+.rightButton .buttonIcon{
 	position: relative;
-	font-weight: 700;
+	font-weight: 900;
 	left: 30px;
+	font-size: 22px;
 }
+
 
 .okButton{
-	cursor: pointer;
 	transition: .3s all;
 	position: absolute;
 	top: 20%;

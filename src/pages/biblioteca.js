@@ -1,5 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useEffect, useContext} from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
+
+import { BsChevronDoubleRight, BsChevronDoubleLeft} from "react-icons/bs"
 
 import api from '../services/api'
 
@@ -16,22 +18,22 @@ import { RequestContext } from '../contexts/requestContext'
 import '../assets/css/style.css'
 
 function Biblioteca() {
-  const { index, setMovement, setIndex, startListen } = useContext(Context)
+  const { index, handleMovement, setIndex, startListen } = useContext(Context)
   const { funcao, makeRequest } = useContext(RequestContext)
   let history = useHistory()
 
   const commands = [
       {
         command: ['direita', 'direito', 'direto'],
-        callback: () => setMovement(2)
+        callback: () => handleMovement(2)
       },
       {
         command: 'esquerda',
-        callback: () => setMovement(1)
+        callback: () => handleMovement(1)
       },
       {
         command: ['clicar', 'clica', 'clique'],
-        callback: () => setMovement(3)
+        callback: () => handleMovement(3)
       }
   ]
 
@@ -58,19 +60,19 @@ function Biblioteca() {
 
 
   return (
-    <div className="container" onKeyPress={setMovement} tabIndex={-1}>
+    <div className="container">
 		<div className="interface">
 			<div className="logo">
 				<img src={logomarca} className="logomarca"/>
 			</div>
 			<div className="content">
 				<div className="control lib">
-					<button id="37" className="lib leftButton interact_btn" value="esquerda" onClick={makeRequest}> <p> esq </p> </button>
+					<button id="37" className="lib leftButton interact_btn" value="esquerda" onClick={makeRequest}><BsChevronDoubleLeft className="buttonIcon"/></button>
 					<button id="13" className="lib okButton interact_btn" value="OK" onClick={makeRequest}>OK</button>
-          <button id="39" className="lib rightButton interact_btn" value="direita" onClick={makeRequest}> <p> dir </p> </button>
+          <button id="39" className="lib rightButton interact_btn" value="direita" onClick={makeRequest}><BsChevronDoubleRight className="buttonIcon"/></button>
 				</div>
 				<button id="48" className="library interact_btn" onClick={goBackHome}> 
-					<img src={seta} className="setaLibrary"/>  
+					<img src={seta} alt="seta" className="setaLibrary"/>  
 				</button>
 			</div>
 			<p className="libraryDesc leftTitle"> Você trocou para {funcao}. </p>

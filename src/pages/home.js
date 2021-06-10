@@ -58,6 +58,8 @@ function Home() {
       startListen()
   }, []);
 
+  console.log('você falou: ', transcript)
+
 
 
   return (
@@ -77,7 +79,6 @@ function Home() {
 				</button>
 			</div>
 			<p className="libraryDesc leftTitle"> Você trocou para {funcao}</p>
-      <p>{transcript}</p>
 		</div>
 	</div>
   );

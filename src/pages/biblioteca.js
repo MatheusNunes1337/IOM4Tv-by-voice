@@ -58,6 +58,8 @@ function Biblioteca() {
       startListen()
   }, []);
 
+  console.log('você falou: ', transcript)
+
 
   return (
     <div className="container">

@@ -8,6 +8,7 @@ const RequestContext = createContext()
 
 function RequestProvider({ children }) {
 	let [funcao, setFuncao] = useState('')
+	let [videoIndex, setVideoIndex] = useState(0)
 
 	async function makeRequest(e) {
 		const funcao = e.currentTarget.value
@@ -21,7 +22,7 @@ function RequestProvider({ children }) {
 	}
   	
 	return (
-		<RequestContext.Provider value={{ funcao, makeRequest}}>
+		<RequestContext.Provider value={{ funcao, makeRequest }}>
 			{children}
 		</RequestContext.Provider>
 	)

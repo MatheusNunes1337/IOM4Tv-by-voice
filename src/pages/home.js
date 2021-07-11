@@ -1,4 +1,4 @@
-import React, {useEffect, useContext} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition'
 
 import api from '../services/api'
@@ -21,6 +21,9 @@ function Home() {
   const { index, handleMovement, setIndex, startListen } = useContext(Context)
   const { funcao, makeRequest } = useContext(RequestContext)
   let history = useHistory()
+
+  const channels = ['canal 1', 'canal 2', 'canal 3', 'canal 4', 'canal 5']
+  let [channelIndex, setChannelIndex] = useState(0)
 
   const commands = [
       {
@@ -46,6 +49,23 @@ function Home() {
     //await api.post('/', data)
     history.push('/biblioteca')
   }
+
+  function trocarCanal(e) {
+      const TVkeyCode = e.currentTarget.id
+      if(TVkeyCode == 40) {
+          if(channelIndex == 0) { 
+              setChannelIndex(channels.length - 1)
+          } else {
+              setChannelIndex(channelIndex - 1)
+          }
+      } else {
+          if(channelIndex == channels.length - 1) {
+              setChannelIndex(0)
+          } else {
+              setChannelIndex(channelIndex + 1)
+          }
+      }
+  }
   
   useEffect(() => {
       let btn;
@@ -70,15 +90,15 @@ function Home() {
 			</div>
 			<div className="content">
 				<div className="control">
-					<button id="40" className="leftButton interact_btn" value="esquerda" onClick={makeRequest}><BsChevronDoubleLeft className="buttonIcon"/></button>
+					<button id="40" className="leftButton interact_btn" value="esquerda" onClick={trocarCanal}><BsChevronDoubleLeft className="buttonIcon"/></button>
 					<button id="13" className="okButton interact_btn" value="OK" onClick={makeRequest}>OK</button>
-          <button id="38" className="rightButton interact_btn" value="direita" onClick={makeRequest}><BsChevronDoubleRight className="buttonIcon"/></button>
+          <button id="38" className="rightButton interact_btn" value="direita" onClick={trocarCanal}><BsChevronDoubleRight className="buttonIcon"/></button>
 				</div>
 				<button id="48" className="library interact_btn" onClick={goToLib}> 
 					<img src={seta} alt="seta" className="setaLibrary"/>  
 				</button>
 			</div>
-			<p className="libraryDesc leftTitle"> Você trocou para {funcao}</p>
+			<p className="libraryDesc leftTitle"> Canal atual: {channels[channelIndex]}</p>
 		</div>
 	</div>
   );

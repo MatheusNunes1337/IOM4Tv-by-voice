@@ -24,6 +24,7 @@ function Biblioteca() {
 
   const videos = ['video 1', 'video 2', 'video 3', 'video 4', 'video 5']
   let [videoIndex, setVideoIndex] = useState(0)
+  let [statusMessage, setStatus] = useState('Selecionado')
 
   const commands = [
       {
@@ -65,6 +66,12 @@ function Biblioteca() {
           setVideoIndex(videoIndex + 1)
         }
     }
+    console.log('video atual:', videos[videoIndex])
+    setStatus('Selecionado o ')
+  }
+
+  function iniciarVideo() {
+    setStatus('Iniciado o ')
   }
 
   useEffect(() => {
@@ -90,14 +97,14 @@ function Biblioteca() {
 			<div className="content">
 				<div className="control lib">
 					<button id="37" className="lib leftButton interact_btn" value="esquerda" onClick={trocarVideo}><BsChevronDoubleLeft className="buttonIcon"/></button>
-					<button id="13" className="lib okButton interact_btn" value="OK" onClick={makeRequest}>OK</button>
+					<button id="13" className="lib okButton interact_btn" value="OK" onClick={iniciarVideo}>OK</button>
           <button id="39" className="lib rightButton interact_btn" value="direita" onClick={trocarVideo}><BsChevronDoubleRight className="buttonIcon"/></button>
 				</div>
 				<button id="48" className="library interact_btn" onClick={goBackHome}> 
 					<img src={seta} alt="seta" className="setaLibrary"/>  
 				</button>
 			</div>
-			<p className="libraryDesc leftTitle"> Video atual: {videos[videoIndex]} </p>
+			<p className="libraryDesc leftTitle"> {statusMessage} {videos[videoIndex]} </p>
 		</div>
 	</div>
   );
